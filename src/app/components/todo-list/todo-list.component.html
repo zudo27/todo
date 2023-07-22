@@ -1,0 +1,40 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-5">
+    <span class="navbar-brand">My TODO List</span>
+    <div class="navbar-nav">
+        <a class="nav-item nav-link" routerLink="/todo/add" routerLinkActive="text-danger">ADD</a>
+        <a class="nav-item nav-link" routerLink="/todo" routerLinkActive="text-danger">LIST</a>
+    </div>
+</nav>
+<div class="container">
+    <router-outlet></router-outlet>
+</div>
+<div class="card shadow">
+    <h5 class="card-header">My Todo List</h5>
+    <div class="card-body">
+        <ul class="list-group" *ngFor="let todo of todos">
+            <li class="list-group-item">
+
+                <div class="form-check d-inline">
+                    <input type="checkbox" class="form-check-input" id="complete">
+                    <label for="complete" class="form-check-label lead">{{todo.title}}</label>
+                </div>
+                <div class="float-right">
+                    <span class="mx-3">{{todo.completed}}</span>
+                    <button class="btn btn-danger btn-sm mx-3" [routerLink]="['/todo/edit', todo.id]">Edit</button>
+                    <button class="btn btn-danger btn-sm mx-3" (click)="deleteTodo(todo.id)">x</button>
+                </div>
+            </li>
+
+        </ul>
+    </div>
+</div>
+<!-- <p>todo-list works!</p>
+<h1>Todo List</h1>
+<ul>
+  <li *ngFor="let todo of (todos$ | async)">
+    {{ todo.title }}
+    <button (click)="deleteTodo(todo.id)">Delete</button>
+    <a [routerLink]="['/todo/edit', todo.id]">Edit</a>
+  </li>
+</ul>
+<a routerLink="/todo/add">Add New Todo</a> -->
